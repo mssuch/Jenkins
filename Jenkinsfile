@@ -16,6 +16,11 @@
                 }
             }
             stage('Build & Test') {
+                   when {
+                       not {
+                       changelog '.*^\\[ci skip\\] .+$'
+                       }
+                   }
                     steps {
                         sh 'mvn clean test'
                     }
